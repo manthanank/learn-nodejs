@@ -1,0 +1,40 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Built files
+dist/
+build/
+out/
+dist_electron/
+dist_electron_debug/
+dist_electron_release/
+
+# .env files
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Other generated files
+*.pid
+*.lock
+*.seed
+*.csv
+
+# Editor files
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
