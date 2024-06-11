@@ -1,4 +1,4 @@
-# learn-nodejs
+# Learn Nodejs
 
 This is a repository for learning Node.js. It contains a collection of resources to learn Node.js from scratch. It includes topics like Node.js, NPM, Modules, Events, File System, HTTP, Express, RESTful API, MongoDB, Mongoose, Authentication, Authorization, Validation, Unit Testing, Integration Testing, Test Driven Development, Deployment, Security, Performance, Scalability, Design Patterns, Error Handling, Logging, Debugging, Monitoring, CI/CD, Docker, Microservices, GraphQL, Websockets, TypeScript, ES6, and Best Practices.
 
