@@ -4,14 +4,115 @@ This is a repository for learning Node.js. It contains a collection of resources
 
 ## Table of Contents
 
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Environment Setup](#environment-setup)
+  - [Windows](#windows)
+  - [macOS](#macos)
+  - [Linux](#linux)
+- [ECMAScript](#ecmascript)
+  - [ES5 (ES2009)](#es5-es2009)
+  - [ES6 (ES2015)](#es6-es2015)
+- [Chrome's V8 Engine](#chromes-v8-engine)
+- [JavaScript Runtime](#javascript-runtime)
 - [Node.js](#nodejs)
+- [Features of Node.js](#features-of-nodejs)
+- [Node.js Architecture](#nodejs-architecture)
+- [Node.js Applications](#nodejs-applications)
+- [Node.js Use Cases](#nodejs-use-cases)
+- [Node.js Advantages](#nodejs-advantages)
+- [Node.js Disadvantages](#nodejs-disadvantages)
 - [NPM](#npm)
+  - [Installation of NPM](#installation-of-npm)
+  - [Usage](#usage)
+  - [package.json](#packagejson)
+  - [Semantic Versioning](#semantic-versioning)
+  - [NPM Scripts](#npm-scripts)
+  - [NPM Modules](#npm-modules)
+  - [NPM Registry](#npm-registry)
+  - [NPM CLI](#npm-cli)
 - [Modules](#modules)
+  - [Creating Modules](#creating-modules)
+  - [Exporting Modules](#exporting-modules)
+  - [Importing Modules](#importing-modules)
+  - [Built-in Modules](#built-in-modules)
+  - [Custom Modules](#custom-modules)
+  - [Local Modules](#local-modules)
+  - [Module Scope](#module-scope)
+  - [Module Wrapper](#module-wrapper)
+  - [Module Caching](#module-caching)
+  - [ES Modules](#es-modules)
+  - [Importing JSON and Watch Mode](#importing-json-and-watch-mode)
+  - [Path Module](#path-module)
+  - [OS Module](#os-module)
+  - [URL Module](#url-module)
+  - [Query String Module](#query-string-module)
+  - [Crypto Module](#crypto-module)
+  - [Zlib Module](#zlib-module)
+  - [Stream Module](#stream-module)
+  - [Child Process Module](#child-process-module)
+  - [Cluster Module](#cluster-module)
+- [Callback Pattern](#callback-pattern)
 - [Events](#events)
+  - [EventEmitter](#eventemitter)
+  - [Event Loop](#event-loop)
+  - [Event Emitter Patterns](#event-emitter-patterns)
+- [Character Sets and Encoding](#character-sets-and-encoding)
+- [Streams](#streams)
+- [Buffers](#buffers)
+- [Asynchronous JavaScript](#asynchronous-javascript)
 - [File System](#file-system)
+  - [Reading Files](#reading-files)
+  - [Writing Files](#writing-files)
+  - [Deleting Files](#deleting-files)
+  - [Renaming Files](#renaming-files)
+- [Pipes](#pipes)
 - [HTTP](#http)
+  - [Creating a Server](#creating-a-server)
+  - [Handling Requests](#handling-requests)
+  - [Routing](#routing)
+  - [Query Strings](#query-strings)
+  - [Redirects](#redirects)
+- [Thread](#thread)
+- [libuv](#libuv)
+- [Worker Threads](#worker-threads)
+- [Queue](#queue)
+  - [Microtask Queue](#microtask-queue)
+  - [Timer Queue](#timer-queue)
+  - [I/O Queue](#io-queue)
+  - [Check Queue](#check-queue)
+  - [Close Queue](#close-queue)
+  - [I/O Polling](#io-polling)
+  - [Network I/O](#network-io)
+  - [Timers](#timers)
+- [Promises](#promises)
+- [Creating a Node Server](#creating-a-node-server)
+  - [JSON Responses](#json-responses)
+  - [HTML Responses](#html-responses)
+  - [HTML Templates](#html-templates)
+- [Web Framework](#web-framework)
+  - [Libraries and Frameworks](#libraries-and-frameworks)
 - [Express](#express)
+  - [Installation of Express](#installation-of-express)
+  - [Hello World with Express](#hello-world-with-express)
+  - [Middleware Functions with Express](#middleware-functions-with-express)
+  - [Routing with Express](#routing-with-express)
+  - [Template Engines with Express](#template-engines-with-express)
+  - [Static Files with Express](#static-files-with-express)
+  - [Error Handling with Express](#error-handling-with-express)
 - [RESTful API](#restful-api)
+  - [HTTP Methods](#http-methods)
+  - [Endpoints](#endpoints)
+  - [Status Codes](#status-codes)
+  - [JSON](#json)
+  - [CRUD Operations](#crud-operations)
+  - [Authentication](#authentication)
+  - [Authorization](#authorization)
+  - [Validation](#validation)
+  - [Pagination](#pagination)
+  - [Filtering](#filtering)
+  - [Versioning](#versioning)
+  - [HATEOAS](#hateoas)
 - [MongoDB](#mongodb)
 - [Mongoose](#mongoose)
 - [Authentication](#authentication)
@@ -38,18 +139,159 @@ This is a repository for learning Node.js. It contains a collection of resources
 - [ES6](#es6)
 - [Best Practices](#best-practices)
 
+## Introduction
+
+- Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside a web browser.
+- Node.js lets developers use JavaScript to write command line tools and for server-side scripting.
+- Node.js represents a "JavaScript everywhere" paradigm, unifying web application development around a single programming language, rather than different languages for server- and client-side scripts.
+
+## Prerequisites
+
+- Before you start learning Node.js, you should have a basic understanding of JavaScript.
+
+## Environment Setup
+
+- You can run Node.js on Windows, macOS, and Linux.
+
+### Windows
+
+- You can download Node.js from the official website [nodejs.org](https://nodejs.org/).
+- You can also install Node.js using a package manager like `chocolatey` & `fnm`.
+
+    ```bash
+    # download and install Node.js
+    choco install nodejs-lts --version="20.14.0"
+
+    # verifies the right Node.js version is in the environment
+    node -v # should print `20`
+    
+    # verifies the right NPM version is in the environment
+    npm -v # should print `10.7.0`
+    ```
+
+    ```bash
+    # installs fnm (Fast Node Manager)
+    winget install Schniz.fnm
+
+    # download and install Node.js
+    fnm use --install-if-missing 20
+
+    # verifies the right Node.js version is in the environment
+    node -v # should print `v20.14.0`
+
+    # verifies the right NPM version is in the environment
+    npm -v # should print `10.7.0`
+    ```
+
+### macOS
+
+- You can download Node.js from the official website [nodejs.org](https://nodejs.org/).
+- You can also install Node.js using a package manager like `brew`.
+
+    ```bash
+    brew install node
+    ```
+
+### Linux
+
+- You can download Node.js from the official website [nodejs.org](https://nodejs.org/).
+- You can also install Node.js using a package manager like `apt`.
+
+    ```bash
+    sudo apt install nodejs
+    ```
+
+- You can also install Node.js using a package manager like `nvm`.
+
+    ```bash
+    # installs nvm (Node Version Manager)
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+    # download and install Node.js (you may need to restart the terminal)
+    nvm install 20
+
+    # verifies the right Node.js version is in the environment
+    node -v # should print `v20.14.0`
+
+    # verifies the right NPM version is in the environment
+    npm -v # should print `10.7.0`
+    ```
+
+## ECMAScript
+
+- ECMAScript is the standard upon which JavaScript is based, and it's often abbreviated to ES.
+
+### ES5 (ES2009)
+
+- ECMAScript 5 (ES5) is the fifth edition of the ECMAScript standard.
+- ES5 was published in December 2009 and was widely adopted by all modern web browsers.
+
+### ES6 (ES2015)
+
+- ECMAScript 6 (ES6) is the sixth edition of the ECMAScript standard.
+- ES6 was published in June 2015 and is also known as ECMAScript 2015.
+
+## Chrome's V8 Engine
+
+- V8 is Google's open-source high-performance JavaScript and WebAssembly engine, written in C++.
+- It is used in Chrome and in Node.js, among others.
+
+## JavaScript Runtime
+
+- A JavaScript runtime is a program that executes JavaScript code.
+- Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+
 ## Node.js
 
 - Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
 - Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 
-### Installation of Node.js
+## Features of Node.js
 
-- You can download Node.js from the official website [nodejs.org](https://nodejs.org/).
-- You can also install Node.js using a package manager like `brew` on macOS, `chocolatey` on Windows, or `apt` on Ubuntu.
+- Asynchronous and Event-Driven
+- Very Fast
+- Single-Threaded but Highly Scalable
+- No Buffering
 
-### Hello World
+## Node.js Architecture
+
+- Node.js is built on the Google Chrome V8 JavaScript engine.
+- It uses a non-blocking, event-driven I/O model.
+- It is lightweight and efficient.
+
+## Node.js Applications
+
+- Web Applications
+- Real-Time Chat Applications
+- RESTful API Applications
+- Microservices
+- CRON Jobs
+
+## Node.js Use Cases
+
+- I/O Bound Applications
+- Data Streaming Applications
+- Data Intensive Real-Time Applications (DIRT)
+- JSON APIs based Applications
+- Single Page Applications
+
+## Node.js Advantages
+
+- Easy to Learn
+- Fast Execution
+- Large Ecosystem
+- Active Community
+- Great Performance
+
+## Node.js Disadvantages
+
+- Callback Hell
+- Unhandled Exceptions
+- Single Threaded
+- Not Suitable for CPU Intensive Tasks
+
+## Hello World
 
 ```javascript
 console.log('Hello, World!');
@@ -209,6 +451,51 @@ console.log('Hello, World!');
 - A module can be included in other modules using `require` function.
 - Node.js has a set of built-in modules which you can use without any further installation.
 
+    ```javascript
+    const fs = require('fs');
+    const http = require('http');
+    const url = require('url');
+    ```
+
+### Creating Modules
+
+- You can create your own modules using `module.exports`.
+
+    ```javascript
+    // math.js
+    module.exports.add = (a, b) => a + b;
+
+    // index.js
+    const math = require('./math');
+    console.log(math.add(1, 2));
+    ```
+
+### Exporting Modules
+
+- You can export modules using `module.exports`.
+
+    ```javascript
+    // math.js
+    module.exports.add = (a, b) => a + b;
+
+    // index.js
+    const math = require('./math');
+    console.log(math.add(1, 2));
+    ```
+
+### Importing Modules
+
+- You can import modules using `require`.
+
+    ```javascript
+    // math.js
+    module.exports.add = (a, b) => a + b;
+
+    // index.js
+    const math = require('./math');
+    console.log(math.add(1, 2));
+    ```
+
 ### Built-in Modules
 
 - Node.js has a set of built-in modules which you can use without any further installation.
@@ -230,6 +517,243 @@ console.log('Hello, World!');
     // index.js
     const math = require('./math');
     console.log(math.add(1, 2));
+    ```
+
+### Local Modules
+
+- Local modules are modules that are stored locally in your project.
+
+    ```javascript
+    // math.js
+    module.exports.add = (a, b) => a + b;
+
+    // index.js
+    const math = require('./math');
+    console.log(math.add(1, 2));
+    ```
+
+### Module Scope
+
+- Each module has its own scope.
+
+    ```javascript
+    // math.js
+    const PI = 3.14;
+
+    module.exports.area = (r) => PI * r * r;
+
+    // index.js
+    const math = require('./math');
+    console.log(math.area(5));
+    ```
+
+### Module Wrapper
+
+- Node.js wraps each module with a function wrapper.
+
+    ```javascript
+    (function (exports, require, module, __filename, __dirname) {
+    // Your code here
+    });
+    ```
+
+### Module Caching
+
+- Node.js caches the modules on the first `require` call.
+- Subsequent `require` calls will return the cached module.
+
+    ```javascript
+    // math.js
+    console.log('math.js is loaded!');
+
+    module.exports.add = (a, b) => a + b;
+
+    // index.js
+    console.log('Before require');
+    const math = require('./math');
+    console.log('After require');
+    const math = require('./math');
+    ```
+
+### ES Modules
+
+- ES Modules are the official standard format to package JavaScript code for reuse.
+- ES Modules are stored in files.
+
+    ```javascript
+    // math.js
+    export const add = (a, b) => a + b;
+
+    // index.js
+    import { add } from './math';
+    console.log(add(1, 2));
+    ```
+
+### Importing JSON and Watch Mode
+
+- You can import JSON files using ES Modules.
+
+    ```javascript
+    // data.json
+    {
+    "name": "John Doe",
+    "email": "john.doe@gmail.com"
+    }
+
+    // index.js
+    import data from './data.json';
+    console.log(data.name);
+    ```
+
+- You can use watch mode to automatically reload the application.
+
+    ```bash
+    node --experimental-modules --es-module-specifier-resolution=node index.js
+    ```
+
+    ```bash
+    node --experimental-modules --es-module-specifier-resolution=node --watch index.js
+    ```
+
+    ```bash
+    node --experimental-modules --es-module-specifier-resolution=node --watch-dir . index.js
+    ```
+
+    ```bash
+    node --experimental-modules --es-module-specifier-resolution=node --watch-dir . --watch-extensions js, mjs index.js
+    ```
+
+### Path Module
+
+- The `path` module provides utilities for working with file and directory paths.
+
+    ```javascript
+    const path = require('path');
+    console.log(path.dirname('/path/to/file.txt'));
+    console.log(path.extname('/path/to/file.txt'));
+    console.log(path.basename('/path/to/file.txt'));
+    ```
+
+### OS Module
+
+- The `os` module provides operating system-related utility methods.
+
+    ```javascript
+    const os = require('os');
+    console.log(os.arch());
+    console.log(os.cpus());
+    console.log(os.freemem());
+    ```
+
+### URL Module
+
+- The `url` module provides utilities for URL resolution and parsing.
+
+    ```javascript
+    const url = require('url');
+    console.log(url.parse('https://example.com'));
+    console.log(url.resolve('https://example.com', '/about'));
+    ```
+
+### Query String Module
+
+- The `querystring` module provides utilities for parsing and formatting URL query strings.
+
+    ```javascript
+    const querystring = require('querystring');
+    console.log(querystring.parse('name=John Doe'));
+    console.log(querystring.stringify({ name: 'John Doe' }));
+    ```
+
+### Crypto Module
+
+- The `crypto` module provides cryptographic functionality.
+
+    ```javascript
+    const crypto = require('crypto');
+    const hash = crypto.createHash('sha256');
+    hash.update('Hello, World!');
+    console.log(hash.digest('hex'));
+    ```
+
+### Zlib Module
+
+- The `zlib` module provides compression and decompression functionality.
+
+    ```javascript
+    const zlib = require('zlib');
+    const input = 'Hello, World!';
+    zlib.deflate(input, (err, buffer) => {
+    if (!err) {
+        console.log(buffer.toString('base64'));
+    }
+    });
+    ```
+
+### Stream Module
+
+- The `stream` module provides an API for streaming data.
+
+    ```javascript
+    const fs = require('fs');
+    const readStream = fs.createReadStream('file.txt');
+    const writeStream = fs.createWriteStream('copy.txt');
+    readStream.pipe(writeStream);
+    ```
+
+### Child Process Module
+
+- The `child_process` module provides the ability to spawn child processes.
+
+    ```javascript
+    const { exec } = require('child_process');
+    exec('ls -la', (err, stdout, stderr) => {
+    if (!err) {
+        console.log(stdout);
+    }
+    });
+    ```
+
+### Cluster Module
+
+- The `cluster` module allows you to create child processes that share server ports.
+
+    ```javascript
+    const cluster = require('cluster');
+    const http = require('http');
+    const numCPUs = require('os').cpus().length;
+
+    if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
+
+    for (let i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`Worker ${worker.process.pid} died`);
+    }
+    } else {
+    http.createServer((req, res) => {
+        res.writeHead(200);
+        res.end('Hello, World!');
+    }).listen(8000);
+
+    console.log(`Worker ${process.pid} started`);
+    }
+    ```
+
+## Callback Pattern
+
+- A callback function is a function passed into another function as an argument.
+- Callback functions can be synchronous or asynchronous.
+
+    ```javascript
+    const fs = require('fs');
+    fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+    });
     ```
 
 ## Events
@@ -270,6 +794,45 @@ console.log('Hello, World!');
     });
 
     myEmitter.emit('event');
+    ```
+
+## Character Sets and Encoding
+
+- A character set is a set of characters that can be used in a language.
+- An encoding is a mapping from a character set to a sequence of bytes.
+
+## Streams
+
+- Streams are objects that let you read data from a source or write data to a destination in continuous fashion.
+
+    ```javascript
+    const fs = require('fs');
+    const read = fs.createReadStream('file.txt');
+    const write = fs.createWriteStream('copy.txt');
+    read.pipe(write);
+    ```
+
+## Buffers
+
+- A buffer is a temporary memory location for data when it is being moved from one place to another.
+- Buffers are used to store raw binary data.
+
+    ```javascript
+    const buffer = Buffer.from('Hello, World!');
+    console.log(buffer.toString());
+    ```
+
+## Asynchronous JavaScript
+
+- Asynchronous JavaScript is a programming pattern that provides non-blocking I/O operations.
+- Asynchronous JavaScript uses callbacks to handle asynchronous operations.
+
+    ```javascript
+    const fs = require('fs');
+    fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+    });
     ```
 
 ## File System
@@ -323,6 +886,17 @@ console.log('Hello, World!');
     if (err) throw err;
     console.log('The file has been renamed!');
     });
+    ```
+
+## Pipes
+
+- Pipes are used to connect the output of one stream to another stream.
+
+    ```javascript
+    const fs = require('fs');
+    const read = fs.createReadStream('file.txt');
+    const write = fs.createWriteStream('copy.txt');
+    read.pipe(write);
     ```
 
 ## HTTP
@@ -405,6 +979,307 @@ console.log('Hello, World!');
     });
     server.listen(3000);
     ```
+
+## Thread
+
+- Node.js is a single-threaded application, but it can support concurrency via the concept of an event loop.
+
+## libuv
+
+- libuv is a multi-platform support library with a focus on asynchronous I/O.
+- Node.js uses the `libuv` library to handle asynchronous operations.
+
+    ```javascript
+    const fs = require('fs');
+    fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+    });
+    ```
+
+## Worker Threads
+
+- Worker threads are used to perform CPU-intensive JavaScript operations.
+
+    ```javascript
+    const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+    if (isMainThread) {
+    const worker = new Worker(__filename);
+    worker.on('message', (message) => {
+        console.log(message);
+    });
+    worker.postMessage('Hello, World!');
+    } else {
+    parentPort.on('message', (message) => {
+        parentPort.postMessage(message);
+    });
+    }
+    ```
+
+## Queue
+
+- A queue is a data structure that stores elements in a First-In-First-Out (FIFO) order.
+
+    ```javascript
+    class Queue {
+    constructor() {
+        this.items = [];
+    }
+
+    enqueue(element) {
+        this.items.push(element);
+    }
+
+    dequeue() {
+        return this.items.shift();
+    }
+
+    front() {
+        return this.items[0];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+
+    print() {
+        console.log(this.items.toString());
+    }
+    }
+
+    const queue = new Queue();
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.print();
+    queue.dequeue();
+    queue.print();
+    ```
+
+### Microtask Queue
+
+- Microtask Queue is a queue that stores microtasks in a First-In-First-Out (FIFO) order.
+
+    ```javascript
+    console.log('Start');
+
+    setTimeout(() => {
+    console.log('Timeout');
+    }, 0);
+
+    Promise.resolve().then(() => {
+    console.log('Promise');
+    });
+
+    console.log('End');
+    ```
+
+### Timer Queue
+
+- Timer Queue is a queue that stores timers in a First-In-First-Out (FIFO) order.
+
+    ```javascript
+    console.log('Start');
+
+    setTimeout(() => {
+    console.log('Timeout');
+    }, 0);
+
+    console.log('End');
+    ```
+
+### I/O Queue
+
+- I/O Queue is a queue that stores I/O operations in a First-In-First-Out (FIFO) order.
+
+    ```javascript
+    const fs = require('fs');
+    fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+    });
+    ```
+
+### Check Queue
+
+- Check Queue is a queue that stores check operations in a First-In-First-Out (FIFO) order.
+
+    ```javascript
+    setImmediate(() => {
+    console.log('Immediate');
+    });
+
+    console.log('End');
+    ```
+
+### Close Queue
+
+- Close Queue is a queue that stores close operations in a First-In-First-Out (FIFO) order.
+
+    ```javascript
+    const server = require('http').createServer();
+    server.listen(3000);
+    server.close(() => {
+    console.log('Server closed');
+    });
+    ```
+
+### I/O Polling
+
+- I/O Polling is a mechanism that polls the I/O Queue for I/O operations.
+
+    ```javascript
+    const fs = require('fs');
+    fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+    });
+    ```
+
+### Network I/O
+
+- Network I/O is a mechanism that handles network I/O operations.
+
+    ```javascript
+    const server = require('http').createServer();
+    server.listen(3000);
+    ```
+
+### Timers
+
+- Timers are used to schedule tasks to be executed in the future.
+
+    ```javascript
+    setTimeout(() => {
+    console.log('Timeout');
+    }, 1000);
+    ```
+
+## Promises
+
+- A promise is an object representing the eventual completion or failure of an asynchronous operation.
+
+    ```javascript
+    const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Hello, World!');
+    }, 1000);
+    });
+
+    promise.then((value) => {
+    console.log(value);
+    });
+    ```
+
+### Chaining Promises
+
+- You can chain promises using `then`.
+
+    ```javascript
+    const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('Hello,');
+    }, 1000);
+    });
+
+    promise.then((value) => {
+    return value + ' World!';
+    }).then((value) => {
+    console.log(value);
+    });
+    ```
+
+## Creating a Node Server
+
+- You can create a simple Node server.
+
+    ```javascript
+    const http = require('http');
+    const server = http.createServer((req, res) => {
+    res.end('Hello, World!');
+    });
+    server.listen(3000);
+    ```
+
+### JSON Responses
+
+- You can send JSON responses.
+
+    ```javascript
+    const http = require('http');
+    const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'Hello, World!' }));
+    });
+    server.listen(3000);
+    ```
+
+### HTML Responses
+
+- You can send HTML responses.
+
+    ```javascript
+    const http = require('http');
+    const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('<h1>Hello, World!</h1>');
+    });
+    server.listen(3000);
+    ```
+
+### HTML Templates
+
+- You can use HTML templates.
+
+    ```javascript
+    const http = require('http');
+    const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(`
+        <h1>Hello, World!</h1>
+        <p>${new Date()}</p>
+    `);
+    });
+    server.listen(3000);
+    ```
+
+### HTTP Routing
+
+- You can create routes using `url` module.
+
+    ```javascript
+    const http = require('http');
+    const url = require('url');
+    const server = http.createServer((req, res) => {
+    const path = url.parse(req.url).pathname;
+    if (path === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Home Page');
+    } else if (path === '/about') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('About Page');
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+    }
+    });
+    server.listen(3000);
+    ```
+
+## Web Framework
+
+- A web framework is a software framework designed to aid in the development of web applications including web services, web resources, and web APIs.
+
+### Libraries and Frameworks
+
+- There are many web frameworks available for Node.js.
+
+  - Express
+  - Koa
+  - Hapi
+  - Nest
+  - Fastify
 
 ## Express
 
@@ -540,9 +1415,9 @@ console.log('Hello, World!');
 
     ```json
     {
-    "id": 1,
-    "name": "John Doe",
-    "email": "johndoe@gmail.com"
+        "id": 1,
+        "name": "John Doe",
+        "email": "johndoe@gmail.com"
     }
     ```
 
