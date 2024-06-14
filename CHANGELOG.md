@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/manthanank/learn-nodejs/compare/v0.2.0...v0.3.0) (2024-06-14)
+
+
+### Features
+
+* Add code changes for new feature ([af14e79](https://github.com/manthanank/learn-nodejs/commit/af14e799eeb3f0fcee04f874622a636ebae16bcd))
+
+
+
 # [0.2.0](https://github.com/manthanank/learn-nodejs/compare/v0.1.0...v0.2.0) (2024-06-11)
 
 
