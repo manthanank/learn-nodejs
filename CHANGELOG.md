@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/manthanank/learn-nodejs/compare/v0.3.0...v0.4.0) (2025-02-01)
+
+
+### Features
+
+* Add support for both TypeScript and JavaScript entry points in package.json ([9ad9b40](https://github.com/manthanank/learn-nodejs/commit/9ad9b401103f9d992ad0202995ec556bb0ce6e8d))
+
+
+
 # [0.3.0](https://github.com/manthanank/learn-nodejs/compare/v0.2.0...v0.3.0) (2024-06-14)
 
 
